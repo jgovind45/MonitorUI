@@ -1,0 +1,74 @@
+<app-http-loader [spinnerFlag]="spinnerFlag"></app-http-loader>
+<div class="container">
+    <div [ngSwitch]="apiStatus">
+        <ng-container *ngSwitchCase="0">
+            <div class="modal" style="display: block;">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <h2>Oops! Something Went Wrong</h2>
+						<span class="cp-link-company"  (click)="loadEventsData()">
+                            Try Again
+                        </span>
+	                    <a class="cp-link-company" href="javascript:void(0)" (click)="goHomePage()">
+                            Home
+                        </a>				
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="1">
+            <div class="row" *ngIf="processStatus && processStatus == 1 && calledFrom != 'corpository'">
+                <div class="col-md-10">
+
+                </div>
+                <div class="col-md-2">
+            <span class="fetching-all">
+                <span class="cp-spin-loader"></span> Fetching all events...
+            </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style=" height:80vh;">
+                    <div id="container-timeline" style="padding-top:10px;margin-bottom: 20px;">
+
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="2">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div _ngcontent-c11="" class="cp-events-nodata">
+                        <img alt="" class="img-fluid mb15" src="/assets/images/timeline_logo.svg">
+                        <p>No timeline events have been recorded for this company</p>
+                        <a class="cp-link-company"  href="javascript:void(0)" (click)="goHomePage()">
+                            Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="4">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div _ngcontent-c11="" class="cp-events-nodata">
+                        <img alt="" class="img-fluid mb15" src="/assets/images/timeline_logo.svg">
+                        <p>Your order is in process, you will receive email notification soon</p>
+                        <a class="cp-link-company"  href="javascript:void(0)" (click)="goHomePage()">
+                            Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+            <div class="text-center">
+                <img src="/assets/images/Not-Authorized.svg" style="width:60%;margin:5% auto 0%;">
+                <p class="page-text">You are not authorized to view this page. Kindly proceed to Home.</p>
+                     <a class="cp-link-company"  href="javascript:void(0)" (click)="goHomePage()">
+                           Home
+                     </a>
+            </div>
+        </ng-container>
+    </div>
+</div>
